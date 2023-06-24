@@ -1,0 +1,27 @@
+﻿@page "/"
+
+@inject vc1.RepositoryPatterns.Interfaces.IArchiving ArchivingService
+
+
+<input type="number" @bind-value="Num1" />
+<a>+</a>
+<input type="number" @bind-value="Num2" />
+<MudButton Variant="Variant.Outlined" Color="Color.Primary" @onclick="SumOfNumbers">sum</MudButton>
+
+<label>Result is : @Result</label>
+
+
+@code{
+
+    public int Num1 { get; set; }
+    public int Num2 { get; set; }
+
+    public int Result { get; set; }
+
+    private void SumOfNumbers()
+    {
+        Result = ArchivingService.AddTwoNumbers(Num1, Num2);
+    }
+
+
+}

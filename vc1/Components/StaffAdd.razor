@@ -1,0 +1,103 @@
+﻿@page "/Staff"
+@using vc1.Models;
+@inject vc1.RepositoryPatterns.Interfaces.IStaff StaffService
+
+
+
+<h3 style="font-family:cursive">Fill To Add</h3>
+
+<br />
+
+<div style="border:solid;border-color:gray; padding:25px; background-color:whitesmoke; border-radius:9px; font-family:cursive">
+
+    <form @onsubmit="SaveEmpInfo">
+
+        <div class="row">
+
+
+            <div class="col-6">
+
+                <label>Emp Name</label>
+                <input type="text" class="form-control" placeholder="Ex.. Husaain" @bind-value="EmpInfo.EmpName"/>
+
+            </div>
+
+
+            <div class="col-3">
+
+                <libel>Date Time</libel>
+                <input type="date" class="form-control" @bind-value="EmpInfo.DateOfBirth"/>
+
+            </div>
+
+        </div>
+
+        <br />
+
+        <div class="row">
+
+
+            <div class="col-3">
+
+                <label>Phone Number</label>
+                <input type="text" class="form-control" placeholder="Ex.. +964 7xxxxxxxxx" @bind-value="EmpInfo.PhoneNumber"/>
+
+            </div>
+
+
+            <div class="col-3">
+
+                <label>Emp Department</label>
+                <select class="form-control" @bind="EmpInfo.Department">
+                    <option>Finance</option>
+                    <option>HR</option>
+                    <option>IT</option>
+                    <option>Adminstration</option>
+                </select>
+
+            </div>
+
+
+            <div class="col-3">
+
+                <label>Position</label>
+                <input type="text" class="form-control" placeholder="Ex.. Administration" @bind-value="EmpInfo.Position"/>
+
+            </div>
+
+
+        </div>
+
+        <br />
+
+        <div class="row">
+
+            <div class="col-6">
+                <label>Emp Salary In IQD</label>
+                <input type="number" class="form-control" placeholder="Ex 1500" @bind-value="EmpInfo.Salary"/>
+            </div>
+
+
+            <div class="col-3">
+                <label></label>
+                <button type="submit" class="form-control btn btn-primary">Save</button>
+            </div>
+
+        </div>
+
+    </form>
+
+
+</div>
+
+
+@code {
+    public StaffModel EmpInfo { get; set; } = new StaffModel();
+
+    private void SaveEmpInfo()
+    {
+            StaffService.AddStaffMember(EmpInfo);
+    }
+
+
+}
